@@ -91,7 +91,7 @@ flowchart LR
 3. If the AI's confidence is below threshold, the HITL gate is triggered and the request pauses for seller input.
 4. On confirmation, the backend persists the updated listing to Neon and returns the before/after payload to the frontend.
 
-## Application Flow (Judge / Evaluator Journey)
+## Application Flow 
 
 This diagram walks through the full user journey an evaluator will experience, from landing on the app to seeing a recovered-revenue projection.
 
