@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+google-generativeai
+groq
+psycopg2-binary
+pydantic

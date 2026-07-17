@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Official Premium Deep Theme Tokens */
+:root {
+  --meesho-magenta: #9F206C;
+  --meesho-purple: #3B1C54;
+  --meesho-pink-bg: #FDF0F6;
+  --meesho-accent: #F89A1C;
+  --meesho-surface: #F8F9FA;
+  --meesho-border: #EAEAEA;
+  --meesho-text-dark: #2D3436;
+  --meesho-text-muted: #666666;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--meesho-text-dark);
+  background-color: var(--meesho-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .meesho-font {
+  font-family: var(--font-heading);
+}
