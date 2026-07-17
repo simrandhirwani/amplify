@@ -7,7 +7,7 @@ export default function SmartReelsStudio() {
   const [catalog, setCatalog] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // UPGRADE 1: recommended top-2 products state
+  // recommended top-2 products state
   const [recommended, setRecommended] = useState([]);
   
   const [step, setStep] = useState('select');
@@ -25,15 +25,14 @@ export default function SmartReelsStudio() {
   const fileInputRef3 = useRef(null);
   const videoRef = useRef(null);
 
-  // UPGRADE 3: recording refs/state
+  //recording refs/state
   const mediaRecorderRef = useRef(null);
   const recordedChunksRef = useRef([]);
   const streamRef = useRef(null);
   const [recordingState, setRecordingState] = useState('idle'); // idle | recording | preview
   const [recordedVideoUrl, setRecordedVideoUrl] = useState(null);
 
-  // 1. Fetch Real Products from Database (WITH SAFE FALLBACKS)
- // 1. Fetch Real Products from Database (UNIVERSAL TRANSLATOR)
+  
   const fetchSellerCatalog = useCallback(async (sellerId) => {
     if (!sellerId) return;
     setIsLoading(true);
@@ -73,7 +72,7 @@ export default function SmartReelsStudio() {
     setIsLoading(false);
   }, []);
 
-  // UPGRADE 1: fetch top-2 recommended products — separate function, does not touch fetchSellerCatalog
+  //fetch top-2 recommended products — separate function, does not touch fetchSellerCatalog
   const fetchRecommended = useCallback(async (sellerId) => {
     if (!sellerId) return;
     try {
@@ -109,13 +108,13 @@ export default function SmartReelsStudio() {
   useEffect(() => {
     if (currentSeller) {
       fetchSellerCatalog(currentSeller);
-      fetchRecommended(currentSeller); // UPGRADE 1: load recommendations alongside catalog
+      fetchRecommended(currentSeller); 
     }
 
     const handleSellerChange = (e) => {
       setCurrentSeller(e.detail);
       fetchSellerCatalog(e.detail);
-      fetchRecommended(e.detail); // UPGRADE 1: refresh recommendations on seller switch
+      fetchRecommended(e.detail); 
       setStep('select'); 
     };
 
@@ -126,10 +125,10 @@ export default function SmartReelsStudio() {
   useEffect(() => {
     let stream = null;
     if (step === 'teleprompter') {
-      navigator.mediaDevices.getUserMedia({ video: true, audio: true }) // audio: true added for real recording (Upgrade 3)
+      navigator.mediaDevices.getUserMedia({ video: true, audio: true }) 
         .then((s) => {
           stream = s;
-          streamRef.current = s; // UPGRADE 3: keep a live reference for MediaRecorder
+          streamRef.current = s; 
           if (videoRef.current) videoRef.current.srcObject = s;
         })
         .catch(() => console.warn("Camera pipeline unavailable."));
@@ -140,10 +139,6 @@ export default function SmartReelsStudio() {
   useEffect(() => {
     let slideshowInterval;
     if (step === 'ai-video' && imagesMap.angle1 && !activePlaybackUrl?.startsWith('blob:')) {
-      // NOTE: This legacy slideshow effect is kept as a harmless fallback.
-      // The primary path now sets activePlaybackUrl to a real recorded blob
-      // via generateBrandedVideo(), which this effect intentionally ignores
-      // (see the blob: check above) so it never overwrites the real video.
       const frames = [imagesMap.angle1, imagesMap.angle2, imagesMap.angle3].filter(Boolean);
       let currentIndex = 0;
       slideshowInterval = setInterval(() => {
@@ -191,9 +186,7 @@ export default function SmartReelsStudio() {
     setTimeout(() => { setIsRenderingVideo(false); setStep('ai-video'); }, 4000);
   };
 
-  // ==========================================
-  // UPGRADE 3: REAL RECORDING (start / stop / retake / save)
-  // ==========================================
+  
   const startRecording = () => {
     if (!streamRef.current) return;
     recordedChunksRef.current = [];
@@ -233,10 +226,7 @@ export default function SmartReelsStudio() {
     document.body.removeChild(a);
   };
 
-  // ==========================================
-  // UPGRADE 4: REAL BRANDED AI VIDEO (Canvas + captureStream + MediaRecorder)
-  // Produces an actual downloadable .webm — not a slideshow illusion.
-  // ==========================================
+  
   function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
     const words = (text || '').split(' ');
     let line = '', lines = [];
@@ -330,7 +320,7 @@ export default function SmartReelsStudio() {
 
         const img = validImages[imgIndex];
 
-        // Ken Burns zoom: cover-fit then scale 1.0 -> 1.15
+        
         const canvasAspect = canvas.width / canvas.height;
         const imgAspect = img.width / img.height;
         let baseW, baseH;
@@ -463,7 +453,7 @@ export default function SmartReelsStudio() {
             <div className="flex flex-col gap-4 animate-fade-in">
               <h3 className="text-lg font-black text-[#3B1C54] uppercase tracking-wider">Step 1: Select Your Product</h3>
 
-              {/* UPGRADE 1: AI Recommended Top-2 section */}
+              {/* AI Recommended Top-2 section */}
               {recommended.length > 0 && (
                 <div className="mb-2">
                   <div className="flex items-center gap-2 mb-3">
@@ -519,7 +509,7 @@ export default function SmartReelsStudio() {
                             Returns: {prod.returnRate > 0 ? `${prod.returnRate}%` : 'N/A'}
                           </span>
                         </div>
-                        {/* THE FIX IS HERE: Safe optional chaining on prod.id */}
+                        {/*Safe optional chaining on prod.id */}
                         {prod.id?.toUpperCase().startsWith("TEST") && (
                            <span className="inline-block mt-2 bg-blue-100 text-blue-700 text-[9px] font-black px-2 py-0.5 rounded uppercase">Live AI Target</span>
                         )}
@@ -682,9 +672,6 @@ export default function SmartReelsStudio() {
               </div>
 
               {imagesMap.angle1 && imagesMap.angle2 && imagesMap.angle3 && (
-                /* UPGRADE 4: button now calls generateBrandedVideo (real canvas-recorded video)
-                   instead of the old fake setTimeout slideshow. runLocalPipelineExecution is
-                   kept above, unused, so you can revert by swapping this one line back. */
                 <button onClick={generateBrandedVideo} className="w-full bg-[#10B981] text-white py-3 mt-4 rounded-xl font-black text-xs uppercase tracking-widest shadow-md hover:bg-green-600 cursor-pointer transition-colors">
                   Generate Video Now
                 </button>
@@ -704,7 +691,7 @@ export default function SmartReelsStudio() {
                 <p className="text-base font-black text-red-600 text-lg">"{agentScript.call_to_action}"</p>
               </div>
 
-              {/* UPGRADE 3: Recording controls */}
+              {/*Recording controls */}
               <div className="mt-4 flex flex-col items-center gap-3">
                 {recordingState === 'idle' && (
                   <button
@@ -768,7 +755,7 @@ export default function SmartReelsStudio() {
             
             <div className="absolute top-0 inset-x-0 h-6 bg-gray-900 rounded-b-2xl w-1/2 mx-auto z-50"></div>
 
-            {/* UPGRADE 5: friendlier idle state, replaces the plain "CANVAS OFFLINE" box */}
+            {/*friendlier idle state, replaces the plain "CANVAS OFFLINE" box */}
             {(step === 'select' || step === 'brainstorm' || step === 'generating') && (
               <div className="text-center p-4 flex flex-col items-center justify-center h-full w-full bg-gradient-to-b from-[#3B1C54] to-[#1E1E24] relative overflow-hidden">
                 <div className="absolute w-40 h-40 bg-[#9F206C]/20 rounded-full blur-3xl animate-pulse"></div>
@@ -797,12 +784,10 @@ export default function SmartReelsStudio() {
               </>
             )}
 
-            {/* UPGRADE 3: show the actual recorded clip in the phone frame for review */}
             {step === 'teleprompter' && recordingState === 'preview' && recordedVideoUrl && (
               <video src={recordedVideoUrl} controls autoPlay loop className="absolute inset-0 w-full h-full object-cover z-30" />
             )}
-
-            {/* UPGRADE 4: real recorded branded video plays here (blob URL from canvas recorder) */}
+            
             {step === 'ai-video' && activePlaybackUrl && (
               <video src={activePlaybackUrl} controls autoPlay loop className="absolute inset-0 w-full h-full object-cover z-10" />
             )}

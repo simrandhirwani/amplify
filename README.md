@@ -33,7 +33,7 @@ Rather than surfacing raw model output, Amplify translates AI reasoning into a b
 
 ## Problem Statement
 
-High return rates on marketplace platforms are frequently caused by a mismatch between what a listing promises and what a customer receives — vague sizing, missing fabric details, unclear fit, or overstated claims. Sellers rarely have the bandwidth to manually audit thousands of SKUs against return reasons and review sentiment. Amplify automates this audit-and-fix loop, while keeping a human in control for edge cases.
+High return rates on marketplace platforms are frequently caused by a mismatch between what a listing promises and what a customer receives - vague sizing, missing fabric details, unclear fit, or overstated claims. Sellers rarely have the bandwidth to manually audit thousands of SKUs against return reasons and review sentiment. Amplify automates this audit-and-fix loop, while keeping a human in control for edge cases.
 
 ## Core Features
 
@@ -54,7 +54,7 @@ When the agent flags a product but has low confidence in an autonomous fix, it p
 A before/after comparison of the product description alongside a projected 30-day drop in return rate and recovered revenue, so the impact of every AI edit is immediately visible.
 
 ### WhatsApp Notification Simulator
-A floating UI overlay that mimics real-time mobile push notifications, alerting the seller whenever the agent applies an autonomous fix or requires HITL sign-off — demonstrating how this would integrate into a real seller's day-to-day workflow.
+A floating UI overlay that mimics real-time mobile push notifications, alerting the seller whenever the agent applies an autonomous fix or requires HITL sign-off, demonstrating how this would integrate into a real seller's day-to-day workflow.
 
 ## System Architecture
 
