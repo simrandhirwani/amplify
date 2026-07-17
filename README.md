@@ -264,3 +264,17 @@ This project is deployed entirely on free-tier infrastructure (Render for the ba
 - Persistent, non-Base64 image storage (e.g., object storage/CDN) as the platform scales past hackathon constraints.
 - Expanded AI confidence scoring to fine-tune when HITL intervention is triggered.
 - Native marketplace API integration for real-time listing sync, beyond the current simulated environment.
+
+## Open-Source Attribution
+
+| Name & Version | License Type | Role in Build | Source Link |
+| :--- | :--- | :--- | :--- |
+| **React (v18.x)** | MIT | Direct integration: Core frontend UI framework | [react.dev](https://react.dev/) |
+| **Vite (v5.x)** | MIT | Direct integration: Frontend build tool and bundler | [vitejs.dev](https://vitejs.dev/) |
+| **Tailwind CSS (v3.x)** | MIT | Direct integration: Frontend styling and UI components | [tailwindcss.com](https://tailwindcss.com/) |
+| **FastAPI (v0.100+)** | MIT | Direct integration: Backend REST API framework | [fastapi.tiangolo.com](https://fastapi.tiangolo.com/) |
+| **Uvicorn** | BSD 3-Clause | Direct integration: ASGI web server for backend | [uvicorn.org](https://www.uvicorn.org/) |
+| **Google Generative AI (Gemini)** | Apache 2.0 | Direct integration: Primary LLM for text analysis, script generation & TTS | [github.com/google/generative-ai-python](https://github.com/google/generative-ai-python) |
+| **Groq** | MIT | Direct integration: Secondary fast-inference LLM (fallback) | [github.com/groq/groq-python](https://github.com/groq/groq-python) |
+| **psycopg2-binary** | LGPL | Direct integration: PostgreSQL database adapter | [psycopg.org](https://www.psycopg.org/) |
+| **Pydantic** | MIT | Direct integration: Data validation and settings management | [docs.pydantic.dev](https://docs.pydantic.dev/) |
