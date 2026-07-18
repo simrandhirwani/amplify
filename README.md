@@ -101,7 +101,7 @@ flowchart TD
     B -- "Seed demo store" --> C["Instant load\n(no LLM call)"]
     B -- "Register new seller" --> D["Interactive Sandbox modal:\nshop name, SKUs, returns,\nratings, mock reviews, images"]
     D --> E["Click Submit / Sync to DB\n(once) — wait ~2s"]
-    E --> F["Seller + products\npersisted to Neon"]
+    E --> F["Seller + products\npersisted to Neon + Call to LLM "]
     C --> G["Dashboard shows flagged\nhigh-return SKUs + ₹ lost"]
     F --> G
     G --> H{"AI confidence\non auto-fix?"}
