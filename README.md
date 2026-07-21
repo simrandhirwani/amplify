@@ -56,6 +56,12 @@ A before/after comparison of the product description alongside a projected 30-da
 ### WhatsApp Notification Simulator
 A floating UI overlay that mimics real-time mobile push notifications, alerting the seller whenever the agent applies an autonomous fix or requires HITL sign-off, demonstrating how this would integrate into a real seller's day-to-day workflow.
 
+### SmartReels Studio
+A built-in marketing engine that capitalizes on high-performing inventory. When a product demonstrates excellent metrics (e.g., return rates below the 12% industry average), the platform seamlessly routes the seller here to instantly generate engaging, AI-scripted video content designed to drive top-of-funnel traffic and viral social feed growth.
+
+### Live Co-Pilot Console
+An intelligent real-time assistant designed for live commerce. As sellers host live streams to showcase their catalog, this console provides dynamic, AI-driven prompts, automated answers to incoming customer queries, and live inventory metrics, ensuring the seller can confidently focus on audience engagement and conversion without breaking flow.
+
 ## System Architecture
 
 ```mermaid
